@@ -3,9 +3,12 @@ MAINTAINER Philip Harries
 ENV hostip %HOSTIP%
 ENV orarpm oracle-xe-11.2.0-1.0.x86_64.rpm
 ADD in-container-build-1.sh /in-container-build-1.sh
-RUN chmod 755 /in-container-build-1.sh && /in-container-build-1.sh
 ADD in-container-build-2.sh /in-container-build-2.sh
-RUN chmod 755 /in-container-build-2.sh && /in-container-build-2.sh
 ADD in-container-build-3.sh /in-container-build-3.sh
 ADD xe.rsp /etc/xe.rsp
-RUN chmod 755 /in-container-build-3.sh && /in-container-build-3.sh
+RUN chmod 755 /in-container-build-1.sh && \
+	/in-container-build-1.sh && \
+	chmod 755 /in-container-build-2.sh && \
+	/in-container-build-2.sh && \
+	chmod 755 /in-container-build-3.sh && \
+	/in-container-build-3.sh
